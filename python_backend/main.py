@@ -1,5 +1,6 @@
 import os
 from contextlib import asynccontextmanager
+from pathlib import Path
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -9,7 +10,7 @@ from dotenv import load_dotenv
 from python_backend.config.db import connect_db, close_db
 from python_backend.routes.employee_routes import router as employee_router
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
